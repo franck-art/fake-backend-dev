@@ -4,24 +4,19 @@
 pipeline {
     agent none
     stages {
-        /*stage('Check python syntax') {
-            agent { docker { image 'eeacms/pylint' } }
+        stage('Check Dockerfile syntax') {
+            agent { docker { image 'projectatomic/dockerfile-lint' } }
             steps {
-                sh 'pylint  \${WORKSPACE}/simple_api/student_age.py'
-            }
-        }*/
-        stage('Check docker-compose syntax') {
-            agent { docker { image 'docker/compose' } }
-            steps {
-                sh 'docker-compose -f \${WORKSPACE}/docker-compose.yml config'
+                sh 'dockerfile-lint  \${WORKSPACE}/fake-backend/Dockerfile'
             }
         }
-        /*stage('Check Dockerfile syntax') {
-            agent { docker { image 'hadolint/hadolint' } }
+
+        stage('Check Golang syntax') {
+            agent { docker { image 'cytopia/golint' } }
             steps {
-                sh 'hadolint \${WORKSPACE}/simple_api/Dockerfile'
+                sh 'golint  \${WORKSPACE}/fake-backend/config.go'
             }
-        }*/
+        }
     }
     post {
     always {
