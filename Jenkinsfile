@@ -5,9 +5,9 @@ pipeline {
     agent none
     stages {
         stage('Check Dockerfile syntax') {
-            agent { docker { image 'projectatomic/dockerfile-lint' } }
+            agent { docker { image 'replicated/dockerfilelint' } }
             steps {
-                sh 'dockerfile_lint -f  \${WORKSPACE}/fake-backend/Dockerfile'
+                sh 'dockerfilelint  \${WORKSPACE}/fake-backend/Dockerfile'
             }
         }
 
