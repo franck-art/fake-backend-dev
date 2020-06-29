@@ -5,9 +5,9 @@ pipeline {
     agent none
     stages {
         stage('Check Dockerfile syntax') {
-            agent { docker { image 'replicated/dockerfilelint' } }
+            agent { docker { image 'hadolint/hadolint' } }
             steps {
-                sh 'dockerfilelint  \${WORKSPACE}/fake-backend/Dockerfile'
+                sh '/bin/hadolint  \${WORKSPACE}/fake-backend/Dockerfile'
             }
         }
 
