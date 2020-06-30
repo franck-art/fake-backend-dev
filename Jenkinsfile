@@ -14,6 +14,7 @@ pipeline {
         stage('Check Golang syntax') {
             agent { docker { image 'cytopia/golint' } }
             steps {
+                sh 'go get github.com/iand/lint/golint'
                 sh 'golint  -f \${WORKSPACE}/fake-backend/'
                 sh 'golint -f  \${WORKSPACE}/fake-backend/vendor/github.com/go-sql-driver/mysql/'
             }
