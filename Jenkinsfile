@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh 'go get -u golang.org/x/lint/golint'
                 sh 'go list -f {{.Target}} golang.org/x/lint/golint'
-                sh 'export PATH="$PATH:/bin/"'
+                sh 'export PATH="$PATH:/go/bin/"'
                 sh 'golint  -f \${WORKSPACE}/fake-backend/'
                 sh 'golint -f  \${WORKSPACE}/fake-backend/vendor/github.com/go-sql-driver/mysql/'
             }
