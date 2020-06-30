@@ -15,9 +15,9 @@ pipeline {
             agent { docker { image 'golang:latest' } }
             steps {
                 sh 'go get -u golang.org/x/lint/golint'
-                sh 'golint --version'
-                sh 'golint  \${WORKSPACE}/fake-backend/'
-                sh 'golint  \${WORKSPACE}/fake-backend/vendor/github.com/go-sql-driver/mysql/'
+                sh 'go list -f {{.Target}} golang.org/x/lint/golint'
+                sh 'golint  -f \${WORKSPACE}/fake-backend/'
+                sh 'golint -f  \${WORKSPACE}/fake-backend/vendor/github.com/go-sql-driver/mysql/'
             }
         }
     }
