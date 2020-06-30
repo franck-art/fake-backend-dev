@@ -12,7 +12,7 @@ pipeline {
         }
 
         stage('Check Golang syntax') {
-            agent { docker { image 'cytopia/golint' } }
+            agent { docker { image 'golang:latest' } }
             steps {
                 sh 'go get github.com/iand/lint/golint'
                 sh 'golint  -f \${WORKSPACE}/fake-backend/'
