@@ -12,7 +12,7 @@ pipeline {
         }
 
         stage('Check Golang syntax') {
-            agent none
+            
             steps {
                 sh 'go env GOPATH GOBIN'
                 sh 'export GOPATH=$HOME/go'
