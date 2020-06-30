@@ -12,12 +12,8 @@ pipeline {
         }
 
         stage('Check Golang syntax') {
-            
+            agent { docker { image 'cytopia/golint' } }
             steps {
-                sh 'go env GOPATH GOBIN'
-                sh 'export GOPATH=$HOME/go'
-                sh 'export GOBIN=$HOME/go/bin'
-                sh 'source ~/.bash_profile'
                 sh 'go get -u golang.org/x/lint/golint'
                 sh 'ls $GOBIN | grep golint'
                 sh 'golint --version'
