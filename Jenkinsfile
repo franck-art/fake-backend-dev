@@ -14,7 +14,7 @@ pipeline {
         stage('Check Golang syntax') {
             agent { docker { image 'golang:latest' } }
             steps {
-                sh 'go get github.com/iand/lint/golint'
+                sh 'go get -u golang.org/x/lint/golint'
                 sh 'go list -f {{.Target}} golang.org/x/lint/golint'
                 sh 'export PATH="$PATH:/bin/"'
                 sh 'golint  -f \${WORKSPACE}/fake-backend/'
