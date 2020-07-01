@@ -21,6 +21,14 @@ pipeline {
                 sh 'golint  \${WORKSPACE}/fake-backend/vendor/github.com/go-sql-driver/mysql/'
             }
         }
+     
+        stage('Check NodeJs syntax') {
+            agent { docker { image 'node:latest' } }
+            steps {
+                sh 'npm -g install nodelint'
+                sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
+            }
+        }
     }
     post {
     always {
