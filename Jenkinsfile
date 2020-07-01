@@ -25,7 +25,8 @@ pipeline {
         stage('Check NodeJs syntax') {
             agent { docker { image 'node:latest' } }
             steps {
-                sh 'npm install lint'
+                sh 'npm install nodelint'
+                sh 'npm fund'
                 sh 'which nodelint'
                 sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
