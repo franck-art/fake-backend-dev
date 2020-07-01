@@ -25,7 +25,7 @@ pipeline {
         stage('Check NodeJs syntax') {
             agent { docker { image 'widerin/alpine-eslint' } }
             steps {
-                sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
+                sh 'eslint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
     }
