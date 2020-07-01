@@ -26,7 +26,8 @@ pipeline {
             agent { docker { image 'node:latest' } }
             steps {
                 sh 'npm install lint'
-                sh 'node node-lint \${WORKSPACE}/battleboat/js/battleboat.js'
+                sh 'which nodelint'
+                sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
     }
