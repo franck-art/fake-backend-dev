@@ -26,10 +26,9 @@ pipeline {
             agent { docker { image 'node:latest' } }
             steps {
                 sh 'git clone https://github.com/Kami/Nodelint.git'
-                sh 'cd \${WORKSPACE}/Nodelint'
-                sh './configure'
-                sh 'make'
-                sh 'make install'
+                sh '\${WORKSPACE}/Nodelint./configure'
+                sh '\${WORKSPACE}/Nodelint/make'
+                sh '\${WORKSPACE}/Nodelint/make install'
                 sh 'jslint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
