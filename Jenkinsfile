@@ -26,8 +26,8 @@ pipeline {
             agent { docker { image 'node:latest' } }
             steps {
                 sh 'npm -g install nodelint'
-               sh 'go list -f {{.Target}} nodelint'
-                sh 'jslint \${WORKSPACE}/battleboat/js/battleboat.js'
+                sh 'export PATH="$PATH:/usr/local/lib/node_modules/nodelint/"'
+                sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
     }
