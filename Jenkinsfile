@@ -25,7 +25,7 @@ pipeline {
         stage('Check NodeJs syntax') {
             agent { docker { image 'eeacms/jslint' } }
             steps {
-                sh 'jslint /code/**/*.js \${WORKSPACE}/battleboat/js/battleboat.js'
+                sh 'docker run -it --rm -v  \${WORKSPACE}/battleboat/js/battleboat.js:/code eeacms/jslint'
             }
         }
     }
