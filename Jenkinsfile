@@ -25,9 +25,8 @@ pipeline {
         stage('Check NodeJs syntax') {
             agent { docker { image 'node:latest' } }
             steps {
-                sh 'npm install nodelint'
-                sh 'export PATH="$PATH:/usr/local/lib/node_nodules/nodelint"'
-                sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
+                sh 'npm install Nodelint'
+                sh 'jslint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
     }
