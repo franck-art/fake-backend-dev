@@ -23,10 +23,8 @@ pipeline {
         }
      
         stage('Check NodeJs syntax') {
-            agent { docker { image 'node:latest' } }
+            agent { docker { image 'widerin/alpine-eslint' } }
             steps {
-                sh 'npm -g install nodelint'
-                sh 'export PATH="$PATH:/usr/local/lib/node_modules/nodelint/"'
                 sh 'nodelint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
