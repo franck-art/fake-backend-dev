@@ -25,7 +25,11 @@ pipeline {
         stage('Check NodeJs syntax') {
             agent { docker { image 'node:latest' } }
             steps {
-                sh 'npm install nodelint'
+                sh 'git clone https://github.com/Kami/Nodelint.git'
+                sh 'cd \${WORKSPACE}/Nodelint'
+                sh './configure'
+                sh 'make'
+                sh 'make install'
                 sh 'jslint \${WORKSPACE}/battleboat/js/battleboat.js'
             }
         }
