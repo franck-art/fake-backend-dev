@@ -22,12 +22,22 @@ pipeline {
             }
         }
      
-        stage('Check NodeJs syntax') {
-            agent { docker { image 'eeacms/jslint' } }
+       /* stage('Check NodeJs syntax') {
+            agent { docker { image 'node:latest' } }
             steps {
-                sh 'docker run -it --rm -v  \${WORKSPACE}/battleboat/js/battleboat.js:/code eeacms/jslint'
+                sh 'npm install -g jshint'
+                sh 'npm install --save-dev jshint'
+                sh 'jshint  \${WORKSPACE}/battleboat/js/battleboat.js'
             }
-        }
+        } */
+        
+         stage('Check html syntax') {
+            agent { docker { image 'ekostadinov/web-linters' } }
+            steps {
+                sh 'csslint  \${WORKSPACE}/battleboat/css/styles.css'
+            }
+        } 
+
     }
     post {
     always {
