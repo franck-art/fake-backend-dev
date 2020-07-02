@@ -7,18 +7,14 @@ pipeline {
         stage('Check Dockerfile syntax') {
             agent { docker { image 'hadolint/hadolint' } }
             steps {
-                sh '/bin/hadolint  \${WORKSPACE}/fake-backend/Dockerfile'
+             script { dockerfileCheck }
             }
         }
 
         stage('Check Golang syntax') {
             agent { docker { image 'golang:latest' } }
             steps {
-                sh 'go get -u golang.org/x/lint/golint'
-                sh 'go list -f {{.Target}} golang.org/x/lint/golint'
-                sh 'export PATH="$PATH:/go/bin/"'
-                sh 'golint  \${WORKSPACE}/fake-backend/'
-                sh 'golint  \${WORKSPACE}/fake-backend/vendor/github.com/go-sql-driver/mysql/'
+             script { golangCheck }
             }
         }
      
@@ -34,7 +30,7 @@ pipeline {
          stage('Check Css syntax') {
             agent { docker { image 'ekostadinov/web-linters' } }
             steps {
-                sh 'csslint  \${WORKSPACE}/battleboat/css/styles.css'
+             script { cssCheck }
             }
         } 
 
