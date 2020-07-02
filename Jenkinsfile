@@ -31,7 +31,7 @@ pipeline {
             }
         } */
         
-         stage('Check html syntax') {
+         stage('Check Css syntax') {
             agent { docker { image 'ekostadinov/web-linters' } }
             steps {
                 sh 'csslint  \${WORKSPACE}/battleboat/css/styles.css'
