@@ -12,7 +12,7 @@ pipeline {
         }
 
         stage('Check Golang syntax') {
-            agent { docker { image 'golang:1.14' } }
+            agent { docker { image 'golang' } }
             steps {
              script { golangCheck }
             }
