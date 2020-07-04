@@ -28,7 +28,7 @@ pipeline {
         } */
         
          stage('Check Css syntax') {
-            agent { docker { image 'eeacms/csslint' } }
+            agent { docker { image 'hspaans/csslint' } }
             steps {
              script { cssCheck }
             }
